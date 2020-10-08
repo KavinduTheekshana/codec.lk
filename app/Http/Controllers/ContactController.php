@@ -45,15 +45,14 @@ class ContactController extends Controller
 
 
         $contact = new contact();
-        $contact->name = $request->input('name');
-        $contact->email = $request->input('email');
-        $contact->subject = $request->input('subject');
-        $contact->message = $request->input('message');
-
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->message = $request->message;
 
 
         $contact->save();
-        return redirect()->back()->with('status', 'New Project Added Sucessfully');
+        // return redirect()->back()->with('status', 'New Project Added Sucessfully');
     }
 
     /**

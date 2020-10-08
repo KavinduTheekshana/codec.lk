@@ -320,11 +320,70 @@
 					</div>
 					<div class="col-sm-6">
 						<!-- CONTACT FORM -->
+						<form action="javascript:void(0)" method="post" class="wow fadeInUp contact-form" id="contactForm" role="form" data-wow-delay="0.8s">
+							<!-- @csrf -->
+
+							<h5 class="main-topic m-0">For more information, kindly fill out the form below</h5>
+							<!-- IF MAIL SENT SUCCESSFUL  // connect this with custom JS -->
+
+							
+
+							<h6 id="progress" class="text-success d-none">Your message has been sent successfully.</h6>
+
+						
+
+
+
+							<!-- IF MAIL NOT SENT -->
+							<h6 class="text-danger d-none">E-mail must be valid and message must be longer than 1 character.</h6>
+
+							<input type="text" class="form-control bg-dark text-white mt-3 mb-3" id="name" name="name" placeholder="Full name">
+							<input type="email" class="form-control bg-dark text-white mb-3" id="email" name="email" placeholder="Email address">
+							<input type="text" class="form-control bg-dark text-white mb-3" id="subject" name="subject" placeholder="Subject">
+							<textarea class="form-control bg-dark text-white mb-3" rows="4" id="message" name="message" placeholder="Tell about your project"></textarea>
+							<button type="submit" class="btn btn-primary btn-lg mt-3" id="submit" name="submit">Send Message</button>
+						</form>
+
+
+
+
+						<script type="text/javascript">
+							$('#contactForm').on('submit', function(event) {
+								event.preventDefault();
+
+								name = $('#name').val();
+								email = $('#email').val();
+								subject = $('#subject').val();
+								message = $('#message').val();
+								$.ajax({
+									url: "/contact",
+									type: "POST",
+									data: {
+										"_token": "{{ csrf_token() }}",
+										name: name,
+										email: email,
+										subject: subject,
+										message: message,
+									},
+									success: function(response) {
+										$('#progress').removeClass("d-none");
+										$('#name').val('');
+										$('#email').val('');
+										$('#subject').val('');
+										$('#message').val('');
+										console.log("sadasd");
+									},
+								});
+							});
+						</script>
+
+
+						<!-- 
 						<form action="/contact" method="post" class="wow fadeInUp contact-form" id="contact-form" role="form" data-wow-delay="0.8s">
 							@csrf
 
 							<h5 class="main-topic m-0">For more information, kindly fill out the form below</h5>
-							<!-- IF MAIL SENT SUCCESSFUL  // connect this with custom JS -->
+					
 
 							@if (session('status'))
 							
@@ -334,7 +393,6 @@
 
 
 
-							<!-- IF MAIL NOT SENT -->
 							<h6 class="text-danger d-none">E-mail must be valid and message must be longer than 1 character.</h6>
 
 							<input type="text" class="form-control bg-dark text-white mt-3 mb-3" id="cf-name" name="name" placeholder="Full name">
@@ -342,7 +400,11 @@
 							<input type="text" class="form-control bg-dark text-white mb-3" id="cf-subject" name="subject" placeholder="Subject">
 							<textarea class="form-control bg-dark text-white mb-3" rows="4" id="cf-message" name="message" placeholder="Tell about your project"></textarea>
 							<button type="submit" class="btn btn-primary btn-lg mt-3" id="cf-submit" name="submit">Send Message</button>
-						</form>
+						</form> -->
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -858,6 +920,10 @@
 		</div>
 	</div>
 </body>
+
+
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="project-planning-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
