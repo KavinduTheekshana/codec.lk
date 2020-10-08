@@ -11,36 +11,32 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <!-- <x-jet-welcome /> -->
 
-
-
-
-
                 <div>
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                         <div class="mt-2 text-2xl">
-                        Contacts
+                            Contacts
                         </div>
                     </div>
 
                     <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1">
                         <div class="p-6 border-t border-gray-200">
 
-
-
-
-
-
-
                             <div class="container">
-                                @if (session('project_diactivate_status'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ session('project_diactivate_status') }}
+                                @if (session('mark_as_unread_status'))
+                                <div class="alert alert-warning" role="alert">
+                                    {{ session('mark_as_unread_status') }}
                                 </div>
                                 @endif
 
-                                @if (session('project_activate_status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('project_activate_status') }}
+                                @if (session('mark_as_read_status'))
+                                <div class="alert alert-info" role="alert">
+                                    {{ session('mark_as_read_status') }}
+                                </div>
+                                @endif
+
+                                @if (session('message_delete_status'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('message_delete_status') }}
                                 </div>
                                 @endif
 
@@ -85,17 +81,17 @@
 
 
                                                 @if($contact->status)
-                                                <a href=""><i class="fa fa-envelope-open text-warning"></i></a>
+                                                <a title="Mark As Unread" href="mark_as_unread/{{$contact->id}}"><i class="fa fa-envelope-open text-warning"></i></a>
                                                 @else
-                                                <a href=""><i class="fa fa-envelope text-info"></i></a>
+                                                <a title="Mark As Read" href="mark_as_read/{{$contact->id}}"><i class="fa fa-envelope text-info"></i></a>
                                                 @endif
 
 
                                                 &nbsp;&nbsp;
-                                                <a href=""><i class="far fa-eye text-dark"></i></a>
+                                                <a title="Show" href="message_show/{{$contact->id}}"><i class="far fa-eye text-dark"></i></a>
 
                                                 &nbsp;&nbsp;
-                                                <button type="submit" onclick="sweet('{{$contact->id}}')" href=""><i class="far fa-trash-alt text-danger"></i></button>
+                                                <button title="Delete" type="submit" onclick="sweet('{{$contact->id}}')" href=""><i class="far fa-trash-alt text-danger"></i></button>
                                                 <!-- <a href="project_delete/{{$contact->id}}"><i class="far fa-trash-alt text-warning"></i></a> -->
                                             </td>
 
@@ -129,6 +125,11 @@
 
                     </div>
 
+                   
+
+
+
+
 
                     <script type="text/javascript">
                         $(function() {
@@ -154,14 +155,14 @@
                                     if (willDelete) {
 
                                         $.ajax({
-                                            url: "{{ url('')}}" + '/' + id,
+                                            url: "{{ url('message_delete')}}" + '/' + id,
                                             type: "GET",
                                             success: function() {
                                                 swal({
-                                                        title: "Success!",
-                                                        text: "Poof! Your imaginary file has been deleted!",
-                                                        type: "success",
-                                                    }).then(
+                                                    title: "Success!",
+                                                    text: "Poof! Your imaginary file has been deleted!",
+                                                    type: "success",
+                                                }).then(
                                                     function() {
                                                         location.reload();
                                                     });
@@ -199,4 +200,6 @@
                 </div>
             </div>
         </div>
+        
 </x-app-layout>
+

@@ -62,9 +62,10 @@ class ContactController extends Controller
      * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(contact $contact)
+    public function message_show($id)
     {
-        //
+        $contacts = DB::table('contacts')->where('id', $id)->first();
+        return view('show', ['contacts' => $contacts]);
     }
 
     public function showcontact(contact $contact)
@@ -106,4 +107,37 @@ class ContactController extends Controller
     {
         //
     }
+
+
+    public function mark_as_unread($id)
+    {
+        $task = contact::find($id);
+        $task->status = false;
+        $task->save();
+        return redirect()->back()->with('mark_as_unread_status', 'Message Mark As Unread Sucessfully');
+    }
+
+    public function mark_as_read($id)
+    {
+        $task = contact::find($id);
+        $task->status = true;
+        $task->save();
+        return redirect()->back()->with('mark_as_read_status', 'Meaashe Mark as Read Sucessfully');;
+    }
+
+    public function message_delete($id)
+    {
+        DB::table('contacts')->where('id', $id)->delete();
+        // return redirect()->back()->with('message_delete_status', 'Message Delete Sucessfully');
+    }
+
+    public function message_delete2($id)
+    {
+        DB::table('contacts')->where('id', $id)->delete();
+        return redirect('showcontact')->with('message_delete_status', 'Message Delete Sucessfully');
+    }
+
+
+
+
 }

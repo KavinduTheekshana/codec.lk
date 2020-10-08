@@ -193,7 +193,7 @@ class ProjectsController extends Controller
     public function project_delete($id)
     {
         DB::table('projects')->where('id', $id)->delete();
-        return redirect()->back()->with('project_diactivate_status', 'Project Delete Sucessfully');
+        // return redirect()->back()->with('project_diactivate_status', 'Project Delete Sucessfully');
     }
 
     public function project_edit($id)
@@ -201,4 +201,20 @@ class ProjectsController extends Controller
         $projects = DB::table('projects')->where('id', $id)->first();
         return view('updateprojects', ['projects' => $projects]);
     }
+
+    public function dashboard()
+    {
+        $users = DB::table('users')->count();
+        $totalprojects = DB::table('projects')->count();
+        $haldprojects = DB::table('projects')->where(['status' => '0'])->count();
+        $ongoingprojects = DB::table('projects')->where(['status' => '1'])->count();
+        $completedprojects = DB::table('projects')->where(['status' => '2'])->count();
+
+        $unreadmessagers = DB::table('contacts')->where(['status' => '0'])->count();
+        $readmessagers = DB::table('contacts')->where(['status' => '2'])->count();
+        $totelmessagers = DB::table('contacts')->where(['status' => '2'])->count();
+        return view('dashboard', ['users' => $users,'totalprojects' => $totalprojects,'haldprojects' => $haldprojects,'ongoingprojects' => $ongoingprojects,
+        'completedprojects' => $completedprojects,'unreadmessagers' => $unreadmessagers,'readmessagers' => $readmessagers,'totelmessagers' => $totelmessagers]);
+    }
+
 }
