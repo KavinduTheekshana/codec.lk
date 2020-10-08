@@ -1,0 +1,12 @@
+.modal {
+  color: $white;
+  font-size: 1rem;
+
+  .modal-header {
+    border-color: $gray-700;
+
+    .close {
+      color: $gray-500;
+    }
+  }
+}
