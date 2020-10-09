@@ -82,7 +82,7 @@
                                 </div>
 
                                 <div class="form-group col-md-5" style="padding-left: 1px;">
-                                    <label>Image</label>
+                                    <label>Image ( size : 1296px X 723px )</label>
                                     <input type="file" name="image" id="input-file-now" class="dropify" />
                                 </div>
 
