@@ -125,7 +125,14 @@ class ProjectsController extends Controller
     public function update(Request $request)
     {
         $id = $request->input('id');
-      
+        
+        
+      $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'location' => ['required'],
+            'description' => ['required'],
+            'status' => ['required'],
+        ]);
 
 
         $projects = new projects();
