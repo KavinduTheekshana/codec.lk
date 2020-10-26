@@ -573,10 +573,10 @@ pre code {
 
 .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
   width: 100%;
-  padding-right: 15px;
+  padding-right: 2rem;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 1rem;
 }
 
 @media (min-width: 576px) {
@@ -9638,7 +9638,8 @@ a.text-dark:hover, a.text-dark:focus {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  transition: background-color .3s, opacity .5s, visibility .5s;
+  transition: background-color .3s,
+ opacity .5s, visibility .5s;
   opacity: 0;
   visibility: hidden;
   z-index: 1000;
@@ -9772,6 +9773,13 @@ a:hover {
 
 .header-banner-area__about-us {
   background-image: url("../images/about-us-back.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.header-banner-area__articles {
+  background-image: url("../images/articles-back.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -10201,7 +10209,8 @@ a:hover {
 }
 
 .home-section .slider-multi ul li {
-  height: 400px;
+  /* height: 400px; */
+  background-size: cover;
 }
 
 .home-section .slider-multi ul li .content .line_viewmore {
@@ -10449,8 +10458,7 @@ a:hover {
   width: 100%;
   height: 100%;
 }
-
-@media screen and (max-width: 1280px) {
+@media only screen and (max-width: 1366px) {
   .particles-js-canvas-el {
     width: auto !important;
     height: auto !important;
@@ -10459,14 +10467,48 @@ a:hover {
     height: 11rem;
   }
   .slider-multi ul li {
-    height: 350px;
+    height: 280px !important;
   }
   .section__services .card {
     min-height: 9rem;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
+  .particles-js-canvas-el {
+    width: auto !important;
+    height: auto !important;
+  }
+  .zoom-gallery li {
+    height: 11rem;
+  }
+  .slider-multi ul li {
+    height: 280px !important;
+  }
+  .section__services .card {
+    min-height: 9rem;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .home-section .intro .main-topic {
+    font-size: 3rem !important;
+  }
+  .home-section h1.main-topic {
+    font-size: 1.5rem !important;
+  }
+  .zoom-gallery li {
+    height: 9rem;
+  }
+  .slider-multi ul li {
+    height: 250px !important;
+  }
+  .slider-multi ul li .project-name {
+    font-size: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .content-block {
     margin: 6.5rem 0 0 0;
   }
@@ -10485,7 +10527,7 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 576px) {
+@media only screen and (max-width: 576px) {
   .content-block {
     margin: 4.5rem 0 0 0;
   }
@@ -10513,7 +10555,7 @@ a:hover {
     padding: 0;
   }
   .home-section .intro .main-topic {
-    font-size: 2rem;
+    font-size: 2rem !important;
   }
   .home-section .intro .home-intro-text .home-intro-text__square {
     margin: -55% 0 5% 0;
@@ -10528,10 +10570,10 @@ a:hover {
     width: 100%;
   }
   .section__services .card .main-topic {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
   .header-banner-area .main-topic {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
   }
   .page-line-top,
   .page-line-bottom,

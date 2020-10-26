@@ -64,3 +64,14 @@ Route::get('mark_as_unread/{id}', 'App\Http\Controllers\ContactController@mark_a
 Route::get('message_delete/{id}', 'App\Http\Controllers\ContactController@message_delete')->middleware('auth');
 Route::get('message_delete2/{id}', 'App\Http\Controllers\ContactController@message_delete2')->middleware('auth');
 Route::get('message_show/{id}', 'App\Http\Controllers\ContactController@message_show')->middleware('auth');
+
+
+Route::get('articles', 'App\Http\Controllers\ArticlesController@index')->name('articles');
+Route::get('managearticles', 'App\Http\Controllers\ArticlesController@managearticles')->name('managearticles');
+Route::get('addarticles', 'App\Http\Controllers\ArticlesController@addarticles')->name('addarticles')->middleware('auth');
+Route::POST('savearticle', 'App\Http\Controllers\ArticlesController@store')->middleware('auth');
+Route::get('project_show/{id}', 'App\Http\Controllers\ArticlesController@show')->middleware('auth');
+// Route::get('article_diactivate/{id}', 'App\Http\Controllers\ArticlesController@project_diactivate')->middleware('auth');
+// Route::get('article_activate/{id}', 'App\Http\Controllers\ArticlesController@project_activate')->middleware('auth');
+Route::get('article_delete/{id}', 'App\Http\Controllers\ArticlesController@destroy')->middleware('auth');
+// Route::get('project_edit/{id}', 'App\Http\Controllers\ArticlesController@project_edit')->middleware('auth');

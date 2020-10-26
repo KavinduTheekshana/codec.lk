@@ -97,7 +97,7 @@
 							News
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
-							<a class="dropdown-item" href="#">Articles</a>
+							<a class="dropdown-item" href="articles">Articles</a>
 							<a class="dropdown-item" href="#">Events</a>
 						</div>
 					</li>
@@ -412,6 +412,7 @@
 
 		<!--Footer section-->
 		<div class="section home-section text-center p-3 background-theme-color-1">
+		<h1 class="main-topic">Partners</h1>
 			<div class="container-fluid">
 				<div class="row mb-5">
 					<div class="col-lg-12">
@@ -801,7 +802,7 @@
 		</div>
 
 		<!--Contact section-->
-		<div class="home-section background-theme-color-2" id="page5">
+		<!-- <div class="home-section background-theme-color-2" id="page5">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
@@ -809,7 +810,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-6" style="padding-left: 20rem;">
 						<div class="row">
 							<div class="col-md-4">
 								<h5 class="m-0">Address</h5>
@@ -849,10 +850,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!--Footer section-->
-		<div class="home-section text-center background-theme-color-1">
+		<!-- <div class="home-section text-center background-theme-color-1">
 			<div class="container-fluid">
 				<div class="row mb-5">
 					<div class="col-4 mb-2">
@@ -917,7 +918,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </body>
 

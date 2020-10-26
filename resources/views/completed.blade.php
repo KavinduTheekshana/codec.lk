@@ -56,7 +56,7 @@
                         News
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
-                        <a class="dropdown-item" href="#">Articles</a>
+                        <a class="dropdown-item" href="articles">Articles</a>
                         <a class="dropdown-item" href="#">Events</a>
                     </div>
                 </li>

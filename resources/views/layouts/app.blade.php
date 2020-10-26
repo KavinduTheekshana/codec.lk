@@ -54,6 +54,9 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+
+
 
 
 </head>
