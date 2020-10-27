@@ -18,7 +18,7 @@
                 <div>
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                         <div class="mt-2 text-2xl">
-                        Manage Articles
+                            Manage Articles
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                                                 @if (strlen(strip_tags($article->description)) > 30)
                                                 {!! substr(strip_tags($article->description), 0, 30) !!} ...
                                                 @else
-                                                {!! $article->description !!}
+                                                {!!( $article->description )!!}
                                                 @endif
                                             </td>
                                             <td><img class="h-10 w-10 rounded-full object-cover" src="{{$article->image}}" /></td>
@@ -83,17 +83,15 @@
 
 
                                             <td>
-                                            <a title="Show" href="project_show/{{$article->id}}"><i class="far fa-eye text-dark"></i></a>
-                                            &nbsp;&nbsp;
+                                                <a title="Show" href="viewarticles/{{$article->id}}"><i class="far fa-eye text-dark"></i></a>
+                                                &nbsp;&nbsp;
                                                 @if($article->status)
-                                                <a href="project_diactivate/{{$article->id}}"><i class="far fa-lock text-danger"></i></a>
+                                                <a href="article_diactivate/{{$article->id}}"><i class="fa fa-lock text-danger"></i></a>
                                                 @else
-                                                <a href="project_activate/{{$article->id}}"><i class="far fa-lock-open text-success"></i></a>
+                                                <a href="article_activate/{{$article->id}}"><i class="fa fa-lock-open text-success"></i></a>
                                                 @endif
 
 
-                                                &nbsp;&nbsp;
-                                                <a href="project_edit/{{$article->id}}"><i class="far fa-edit text-dark"></i></a>
 
                                                 &nbsp;&nbsp;
                                                 <button type="submit" onclick="sweet('{{$article->id}}')" href=""><i class="far fa-trash-alt text-warning"></i></button>
@@ -159,10 +157,10 @@
                                             type: "GET",
                                             success: function() {
                                                 swal({
-                                                        title: "Success!",
-                                                        text: "Poof! Your imaginary file has been deleted!",
-                                                        type: "success",
-                                                    }).then(
+                                                    title: "Success!",
+                                                    text: "Poof! Your imaginary file has been deleted!",
+                                                    type: "success",
+                                                }).then(
                                                     function() {
                                                         location.reload();
                                                     });

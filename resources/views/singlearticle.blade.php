@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}">
 
     <title>Articles | Code Consultants</title>
 
@@ -12,21 +12,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!--Common css-->
-    <link rel="stylesheet" href="css/fontawesome-free-5.14.0-web/css/all.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/fontawesome-free-5.14.0-web/css/all.css')}}">
+    <link rel="stylesheet" href="{{asset('css/aos.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 
 <body>
-    <div class="preload"><img src="images/loading.gif"></div>
+    <div class="preload"><img src="{{asset('images/loading.gif')}}"></div>
     <nav class="navbar navbar-expand-lg fixed-top bg-dark">
         <a class="navbar-brand" href="index.html">
-            <img src="images/code_consultant_logo_light.png">
+            <img src="{{asset('images/code_consultant_logo_light.png')}}">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+      
         <div class="collapse navbar-collapse mt-sm-0 mt-3" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto navbar-collapse__list" id="menu">
                 <li class="nav-item" data-menuanchor="page1">
@@ -64,43 +65,14 @@
     </nav>
 
     <div class="content-block">
-        <div class="header-banner-area header-banner-area__articles">
-            <div class="header-banner-area__overlay">
-                <h1 class="main-topic text-uppercase">Articles</h1>
-            </div>
-        </div>
         <div class="container">
-           
-
-
-      
-            <div class="row mt-3 mb-5">
-
-            @foreach($articles as $article)
-
-                <div class="col-sm-6" id="january">
-                    <a href="singlearticle/{{$article->id}}">
-                        <div class="card mb-3 border-dark rounded-0 shadow-lg">
-                            <div class="card-body">
-                                <h5 class="card-title text-dark">{{$article->title}}</h5>
-                                <p class="card-text text-dark paragraph-text">@if (strlen(strip_tags($article->description)) > 100)
-                                                {!! substr(strip_tags($article->description), 0, 100) !!} ...
-                                                @else
-                                                {!!( $article->description )!!}
-                                                @endif</p>
-                                <p class="card-text"><small class="text-muted">Last updated : {{ date('d-M-Y', strtotime($article->updated_at)) }}</small></p>
-                            </div>
-                            <img src="{{ asset($article->image) }}" style="overflow: hidden; object-fit: cover;" height="300px" class="card-img rounded-0" alt="...">
-                        </div>
-                    </a>
+            <div class="row mt-5 mb-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <h3 class="card-title text-dark mt-3">{{$articles->title}}</h3>
+                    <p class="card-text"><small class="text-muted">Last updated : {{ date('d-M-Y', strtotime($articles->updated_at)) }}</small></p>
+                    <img src="{{ asset($articles->image) }}" class="rounded-0 w-100" height="500px" style="overflow: hidden; object-fit: cover;" alt="...">
+                    <p class="card-text text-dark mt-3 paragraph-text">{!! $articles->description !!}</p>
                 </div>
-
-                @endforeach
-
-              
-  
-      
-     
             </div>
         </div>
     </div>
@@ -125,9 +97,9 @@
         </div>
     </footer>
 </body>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/aos.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/aos.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 <script>
     AOS.init();
 </script>

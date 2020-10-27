@@ -15,7 +15,14 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('articles');
+        $articles = DB::table('articles')->orderBy('id', 'desc')->get();
+        return view('articles', ['articles' => $articles]);
+    }
+
+    public function viewarticles($id)
+    {
+        $articles = DB::table('articles')->where(['id' => $id])->get();
+        return view('viewarticles', ['articles' => $articles]);
     }
 
 
@@ -27,11 +34,15 @@ class ArticlesController extends Controller
 
     public function managearticles()
     {
-        $articles = DB::table('articles')->where(['status' => '1'])->get();
+        $articles = DB::table('articles')->get();
         return view('managearticles', ['articles' => $articles]);
     }
 
-
+    public function singlearticle($id)
+    {
+        $articles = DB::table('articles')->where(['id' => $id])->first();
+        return view('singlearticle', ['articles' => $articles]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -105,9 +116,67 @@ class ArticlesController extends Controller
      * @param  \App\Models\articles  $articles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, articles $articles)
+    public function update(Request $request)
     {
-        //
+
+    
+
+        $id = $request->input('id');
+        $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required'],
+        ]);
+
+
+
+        $articles = new articles();
+        $articles->title = $request->input('title');
+        $articles->description = $request->input('description');
+
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $destinationPath = 'uploads/articles/'; // upload path
+            $article_image = 'uploads/articles/' . date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $article_image);
+            $articles->image = "$article_image";
+        }else {
+            $articles->image = $request->input('imagelink');
+        }
+        
+
+        $data = array(
+            'title' => $articles->title,
+            'description' => $articles->description,
+            'image' => $articles->image,
+        );
+
+        articles::where('id', $id)->update($data);
+        $articles->update();
+        return redirect()->back()->with('status', 'Article Update Sucessfully');
+
+
+
+
+        return $request->input('id');
+       
+
+        $articles = new articles();
+        $articles->title = $request->input('title');
+        $articles->description = $request->input('description');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $destinationPath = 'uploads/articles/'; // upload path
+            $article_image = 'uploads/articles/' . date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $article_image);
+            $articles->image = "$article_image";
+        } else {
+            $articles->image = 'uploads/articles/default.jpg';
+        }
+
+        $articles->save();
+        return redirect('addarticles')->with('status', 'New Article Added Sucessfully');
     }
 
     /**
@@ -120,4 +189,25 @@ class ArticlesController extends Controller
     {
         DB::table('articles')->where('id', $articles)->delete();
     }
+
+
+
+    public function article_diactivate($id)
+    {
+        $task = articles::find($id);
+        $task->status = false;
+        $task->save();
+        return redirect()->back()->with('project_diactivate_status', 'Project Was Diactivated Sucessfully');
+    }
+
+    public function article_activate($id)
+    {
+        $task = articles::find($id);
+        $task->status = true;
+        $task->save();
+        return redirect()->back()->with('project_activate_status', 'Project Was Activated Sucessfully');;
+    }
+
+
+
 }

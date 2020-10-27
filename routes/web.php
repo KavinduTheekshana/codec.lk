@@ -67,11 +67,13 @@ Route::get('message_show/{id}', 'App\Http\Controllers\ContactController@message_
 
 
 Route::get('articles', 'App\Http\Controllers\ArticlesController@index')->name('articles');
-Route::get('managearticles', 'App\Http\Controllers\ArticlesController@managearticles')->name('managearticles');
+Route::get('viewarticles/{id}', 'App\Http\Controllers\ArticlesController@viewarticles')->name('viewarticles')->middleware('auth');
+Route::get('managearticles', 'App\Http\Controllers\ArticlesController@managearticles')->name('managearticles')->middleware('auth');
 Route::get('addarticles', 'App\Http\Controllers\ArticlesController@addarticles')->name('addarticles')->middleware('auth');
 Route::POST('savearticle', 'App\Http\Controllers\ArticlesController@store')->middleware('auth');
 Route::get('project_show/{id}', 'App\Http\Controllers\ArticlesController@show')->middleware('auth');
-// Route::get('article_diactivate/{id}', 'App\Http\Controllers\ArticlesController@project_diactivate')->middleware('auth');
-// Route::get('article_activate/{id}', 'App\Http\Controllers\ArticlesController@project_activate')->middleware('auth');
+Route::get('article_diactivate/{id}', 'App\Http\Controllers\ArticlesController@article_diactivate')->middleware('auth');
+Route::get('article_activate/{id}', 'App\Http\Controllers\ArticlesController@article_activate')->middleware('auth');
 Route::get('article_delete/{id}', 'App\Http\Controllers\ArticlesController@destroy')->middleware('auth');
-// Route::get('project_edit/{id}', 'App\Http\Controllers\ArticlesController@project_edit')->middleware('auth');
+Route::POST('updatearticle', 'App\Http\Controllers\ArticlesController@update')->middleware('auth');
+Route::get('singlearticle/{id}', 'App\Http\Controllers\ArticlesController@singlearticle');
