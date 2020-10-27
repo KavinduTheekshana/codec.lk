@@ -155,7 +155,7 @@
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/1.jpg" class="rounded">
                         <h4 class="main-topic mt-4">B.B. Kulupana</h4>
-                        <p>B.Sc. Eng., PG Dip., (Struct. Eng. Design)C.Eng., M.I.E. (SL)</p>
+                        <p>B.Sc. Eng., PG Dip., (Struct. Eng. Design)<br>C.Eng., M.I.E. (SL)</p>
                         <p class="text-bold">Chairman</p>
                         <hr>
                         <p>Kulupana is Chartered Engineer, graduated 1992 from University of Moratuwa, having over 27 years of experience in local & overseas construction industry.</p>
@@ -163,7 +163,7 @@
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/2.jpg" class="rounded">
                         <h4 class="main-topic mt-4">Prasantha Peiris</h4>
-                        <p>B.Sc.Eng.(Hons.), CEng., MIE(SL), MSSE(SL), PG Dip in Struct. Eng. Design</p>
+                        <p>B.Sc.Eng.(Hons.), CEng., MIE(SL), MSSE(SL), <br> PG Dip in Struct. Eng. Design</p>
                         <p class="text-bold">Managing Director/CEO</p>
                         <hr>
                         <p>Managing Director/CEOPrasantha Peiris is a Chartered Structural
@@ -185,7 +185,7 @@
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/3.jpg" class="rounded">
                         <h4 class="main-topic mt-4">Susil Rodrigo</h4>
-                        <p>B.Sc. Eng. (Hons.), CEng., MIE(SL),MIE(AUST)</p>
+                        <p>B.Sc. Eng. (Hons.), CEng., <br> MIE(SL),MIE(AUST)</p>
                         <p class="text-bold">Director</p>
                         <hr>
                         <p>Susil is Chartered Engineer, graduated 1992 from University of Moratuwa, having over 27 years of experience in local & overseas construction industry especially in high rise buildings.</p>
@@ -195,7 +195,7 @@
                     <div class="col-lg-4 offset-lg-2 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/4.jpg" class="rounded">
                         <h4 class="main-topic mt-4">Mevan Gunatilleke</h4>
-                        <p>B.Sc. Eng. (Hons), M. Eng. (Struct), ACGI (UK),C. Eng., M.I.E (SL)</p>
+                        <p>B.Sc. Eng. (Hons), M. Eng. (Struct), ACGI (UK),<br>C. Eng., M.I.E (SL)</p>
                         <p class="text-bold">Director</p>
                         <hr>
                         <p>Mevan Gunatilleke is a Chartered Structural Engineer by
@@ -229,34 +229,34 @@
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/2.jpg" class="rounded-image">
                         <h4 class="main-topic mt-4">P.P.P Peiris</h4>
-                        <p>B.Sc. Eng. (Hons.), CEng., MIE(SL),MSSE(SL) PG Dip in Struct. Eng. Design</p>
+                        <p>B.Sc. Eng. (Hons.), CEng., MIE(SL),MSSE(SL) <br> PG Dip in Struct. Eng. Design</p>
                     </div>
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/7.jpg" class="rounded-image">
                         <h4 class="main-topic mt-4">S.B. Ambahera</h4>
-                        <p>B.Sc. Eng. (Hons.), AMIE(SL),AMSSE(SL) Design Engineer (Structural)</p>
+                        <p>B.Sc. Eng. (Hons.), AMIE(SL),<br>AMSSE(SL) Design Engineer (Structural)</p>
                     </div>
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/8.jpg" class="rounded-image">
                         <h4 class="main-topic mt-4">S.P.I.I. Wijerathna</h4>
-                        <p>B.Sc. Eng. (Hons.), CEng., MIE(SL),MSSE(SL) Design Engineer (Structural)</p>
+                        <p>B.Sc. Eng. (Hons.), CEng., MIE(SL),<br>MSSE(SL) Design Engineer (Structural)</p>
                     </div>
                 </div>
                 <div class="row mt-5">
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/9.jpg" class="rounded-image">
                         <h4 class="main-topic mt-4">D.N.T.M. Siriwardana</h4>
-                        <p>B.Sc. Eng. (Hons.), AMIE(SL),AMSSE(SL), Design Engineer (Structural)</p>
+                        <p>B.Sc. Eng. (Hons.), AMIE(SL),<br>AMSSE(SL) Design Engineer (Structural)</p>
                     </div>
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/10.jpg" class="rounded-image">
                         <h4 class="main-topic mt-4">B.U.C. Fernando</h4>
-                        <p>B.Sc. Eng. (Hons.), AMIE(SL),AMSSE(SL) Design Engineer (Structural)</p>
+                        <p>B.Sc. Eng. (Hons.), AMIE(SL),<br>AMSSE(SL) Design Engineer (Structural)</p>
                     </div>
                     <div class="col-lg-4 mb-sm-0 mb-5" data-aos="fade-up">
                         <img src="images/team/11.jpg" class="rounded-image">
                         <h4 class="main-topic mt-4">R.W.M. Amanthika</h4>
-                        <p>B.Sc. Eng. (Hons.), AMIE(SL),AMSSE(SL) Design Engineer (Structural)</p>
+                        <p>B.Sc. Eng. (Hons.), AMIE(SL),<br>AMSSE(SL) Design Engineer (Structural)</p>
                     </div>
                 </div>
             </div>
