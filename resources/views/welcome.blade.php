@@ -27,6 +27,73 @@
 	<!--Main style css-->
 	<link rel="stylesheet" href="css/style.css">
 
+	<style>
+		/* Mobile carousel images - fixed height with object-fit cover */
+		#carouselExampleCaptions .carousel-item img,
+		#carouselOngoingProjects .carousel-item img {
+			height: 400px;
+			object-fit: cover;
+			width: 100%;
+		}
+
+		/* Adjust height for smaller mobile screens */
+		@media (max-width: 576px) {
+			#carouselExampleCaptions .carousel-item img,
+			#carouselOngoingProjects .carousel-item img {
+				height: 300px;
+			}
+		}
+
+		/* Hamburger menu icon styling for dark navbar */
+		.navbar-toggler {
+			border-color: rgba(255, 255, 255, 0.5);
+			padding: 0.25rem 0.75rem;
+			font-size: 1.25rem;
+			background-color: transparent;
+			position: relative;
+			z-index: 1050;
+		}
+
+		.navbar-toggler:focus {
+			outline: none;
+			box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+		}
+
+		.navbar-toggler-icon {
+			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+			width: 1.5em;
+			height: 1.5em;
+		}
+
+		/* Mobile navbar positioning and spacing */
+		#mobile-navbar {
+			padding-right: 15px;
+			padding-left: 15px;
+			z-index: 1040;
+		}
+
+		/* Fix for tablet view - ensure navbar is clickable */
+		@media (min-width: 576px) and (max-width: 991px) {
+			#mobile-navbar .navbar-toggler {
+				display: block !important;
+				z-index: 1051 !important;
+				pointer-events: all !important;
+				position: relative;
+				cursor: pointer;
+			}
+
+			#mobile-navbar .navbar-collapse {
+				position: relative;
+				z-index: 1045;
+			}
+
+			/* Override the scroll hide behavior for tablet view */
+			#mobile-navbar {
+				top: 0 !important;
+			}
+		}
+	</style>
+
 	<!--This jquery file is used for whole home page scrolling effect-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -60,7 +127,7 @@
 	<div class="page-line-left"></div>
 	<div class="page-line-right"></div>
 
-	<div id="pagepiling" class="d-sm-block d-none">
+	<div id="pagepiling" class="d-lg-block d-none">
 		<nav class="navbar navbar-expand-lg" id="navbar">
 			<a class="navbar-brand" href="index.html">
 				<img src="images/code_consultant_logo_light.png">
@@ -486,16 +553,16 @@
 		</div>
 	</div>
 
-	<div class="home-mobile-view d-sm-none d-block" id="page1">
+	<div class="home-mobile-view d-lg-none d-block" id="page1">
 		<nav class="navbar navbar-expand-lg" id="mobile-navbar">
 			<a class="navbar-brand" href="index.html">
 				<img src="images/code_consultant_logo_light.png">
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentMobile" aria-controls="navbarSupportedContentMobile" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse mt-sm-0 mt-3" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse mt-sm-0 mt-3" id="navbarSupportedContentMobile">
 				<ul class="navbar-nav ml-auto navbar-collapse__list" id="menu2">
 					<li class="nav-item active" data-menuanchor="page1">
 						<a class="nav-link" href="#page1">Home <span class="sr-only">(current)</span></a>
@@ -568,63 +635,26 @@
 		</div>
 
 		<!--Completed projects section-->
-		<!-- <div class="home-section text-center background-theme-color-1" id="page2">
+		<div class="home-section text-center background-theme-color-1" id="page2">
 			<h1 class="main-topic">Completed Projects</h1>
 			<div class="container-fluid">
 				<div class="row no-gutters">
 					<div class="col-md-12">
 						<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
-								<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
+								@foreach($completedprojects as $index => $completedproject)
+								<li data-target="#carouselExampleCaptions" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
+								@endforeach
 							</ol>
 							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="images/completed-projects/1.jpg" class="d-block w-100" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>First slide label</h5>
-										<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+								@foreach($completedprojects as $index => $completedproject)
+								<div class="carousel-item {{$index == 0 ? 'active' : ''}}">
+									<img src="{{$completedproject->image}}" class="d-block w-100" alt="{{$completedproject->title}}">
+									<div class="carousel-caption">
+										<h5>{{$completedproject->title}}</h5>
 									</div>
 								</div>
-								<div class="carousel-item">
-									<img src="images/completed-projects/2.jpg" class="d-block w-100" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>Second slide label</h5>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="images/completed-projects/3.jpg" class="d-block w-100" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>Third slide label</h5>
-										<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="images/completed-projects/4.jpg" class="d-block w-100" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>Fourth slide label</h5>
-										<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="images/completed-projects/5.jpg" class="d-block w-100" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>Five slide label</h5>
-										<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img src="images/completed-projects/6.jpg" class="d-block w-100" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h5>Six slide label</h5>
-										<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-									</div>
-								</div>
+								@endforeach
 							</div>
 							<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -635,90 +665,49 @@
 								<span class="sr-only">Next</span>
 							</a>
 						</div>
-						<button class="btn btn-primary btn-lg mt-3" onclick="location.href='completed-projects.html'">Completed Projects</button>
+						<button class="btn btn-primary btn-lg mt-3" onclick="location.href='completed'">Completed Projects</button>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<!--Ongoing projects section-->
-		<!-- <div class="home-section text-center background-theme-color-2" id="page3">
+		<div class="home-section text-center background-theme-color-2" id="page3">
 			<h1 class="main-topic">Ongoing Projects</h1>
-			<div class="container">
-				<div class="row">
+			<div class="container-fluid">
+				<div class="row no-gutters">
 					<div class="col-md-12">
-						<ul class="zoom-gallery mb-5">
-							<li>
-								<a href="images/completed-projects/1.jpg" data-source="" title="Project Title 1">
-									<img src="images/completed-projects/1.jpg">
-									<div class="zoom-gallery__info">
-										<div class="zoom-gallery__info-text">
-											<h4 class="main-topic mb-2">Project Name</h4>
-											<p class="m-0 text-secondary">Location</p>
-										</div>
+						<div id="carouselOngoingProjects" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								@foreach($ongoingprojects as $index => $ongoingproject)
+								<li data-target="#carouselOngoingProjects" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
+								@endforeach
+							</ol>
+							<div class="carousel-inner">
+								@foreach($ongoingprojects as $index => $ongoingproject)
+								<div class="carousel-item {{$index == 0 ? 'active' : ''}}">
+									<img src="{{$ongoingproject->image}}" class="d-block w-100" alt="{{$ongoingproject->title}}">
+									<div class="carousel-caption">
+										<h5>{{$ongoingproject->title}}</h5>
+										<p class="text-secondary">{{$ongoingproject->location}}</p>
 									</div>
-								</a>
-							</li>
-							<li>
-								<a href="images/completed-projects/2.jpg" data-source="" title="Project Title 2">
-									<img src="images/completed-projects/2.jpg">
-									<div class="zoom-gallery__info">
-										<div class="zoom-gallery__info-text">
-											<h4 class="main-topic mb-2">Project Name</h4>
-											<p class="m-0 text-secondary">Location</p>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="images/completed-projects/3.jpg" data-source="" title="Project Title 3">
-									<img src="images/completed-projects/3.jpg">
-									<div class="zoom-gallery__info">
-										<div class="zoom-gallery__info-text">
-											<h4 class="main-topic mb-2">Project Name</h4>
-											<p class="m-0 text-secondary">Location</p>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="images/completed-projects/4.jpg" data-source="" title="Project Title 4">
-									<img src="images/completed-projects/4.jpg">
-									<div class="zoom-gallery__info">
-										<div class="zoom-gallery__info-text">
-											<h4 class="main-topic mb-2">Project Name</h4>
-											<p class="m-0 text-secondary">Location</p>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="images/completed-projects/5.jpg" data-source="" title="Project Title 5">
-									<img src="images/completed-projects/5.jpg">
-									<div class="zoom-gallery__info">
-										<div class="zoom-gallery__info-text">
-											<h4 class="main-topic mb-2">Project Name</h4>
-											<p class="m-0 text-secondary">Location</p>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="images/completed-projects/6.jpg" data-source="" title="Project Title 6">
-									<img src="images/completed-projects/6.jpg">
-									<div class="zoom-gallery__info">
-										<div class="zoom-gallery__info-text">
-											<h4 class="main-topic mb-2">Project Name</h4>
-											<p class="m-0 text-secondary">Location</p>
-										</div>
-									</div>
-								</a>
-							</li>
-						</ul>
+								</div>
+								@endforeach
+							</div>
+							<a class="carousel-control-prev" href="#carouselOngoingProjects" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselOngoingProjects" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+						<button class="btn btn-primary btn-lg mt-3" onclick="location.href='ongoing'">All Ongoing Projects</button>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<!--Services section-->
 		<div class="home-section section__services text-center background-theme-color-1" id="page4">
@@ -802,7 +791,7 @@
 		</div>
 
 		<!--Contact section-->
-		<!-- <div class="home-section background-theme-color-2" id="page5">
+		<div class="home-section background-theme-color-2 p-3" id="page5">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
@@ -810,50 +799,51 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-6" style="padding-left: 20rem;">
+					<div class="col-sm-12 col-md-6">
 						<div class="row">
 							<div class="col-md-4">
-								<h5 class="m-0">Address</h5>
-								<p class="mt-2">CODE Consultants (Pvt) Ltd 10, <br>Albert Crescent, <br>Colombo 07</p>
+								<h5 class="main-topic m-0">Address</h5>
+								<p class="mt-3">CODE Consultants (Pvt) Ltd 10, <br>Albert Crescent, <br>Colombo 07</p>
 							</div>
 							<div class="col-md-4">
-								<h5 class="m-0">Email</h5>
-								<p class="mt-2">code@codec.lk</p>
+								<h5 class="main-topic m-0">Email</h5>
+								<p class="mt-3">code@codec.lk</p>
 							</div>
 							<div class="col-md-4">
-								<h5 class="m-0">Phone</h5>
-								<p class="mt-2">+94 (11) 216 320</p>
+								<h5 class="main-topic m-0">Phone</h5>
+								<p class="mt-3">+94 (11) 216 320</p>
 							</div>
 						</div>
 
 						<div id="google-map" class="margin-top-20">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63377.68338205997!2d79.85942119329492!3d6.87799692758435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259382ba9f551%3A0xac2894f0553e3678!2sCODE%20Consultants%20(pvt)%20Ltd!5e0!3m2!1sen!2slk!4v1570709089384!5m2!1sen!2slk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63377.68338205997!2d79.85942119329492!3d6.87799692758435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259382ba9f551%3A0xac2894f0553e3678!2sCODE%20Consultants%20(pvt)%20Ltd!5e0!3m2!1sen!2slk!4v1570709089384!5m2!1sen!2slk" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-12 col-md-6">
 						<!-- CONTACT FORM -->
-						<form action="#" method="post" class="wow fadeInUp contact-form" id="contact-form" role="form" data-wow-delay="0.8s">
+						<form action="javascript:void(0)" method="post" class="wow fadeInUp contact-form" id="contactFormMobile" role="form" data-wow-delay="0.8s">
 
-							<h5 class="main-topic mt-4">For more information, kindly fill out the form below</h5>
+							<h5 class="main-topic m-0">For more information, kindly fill out the form below</h5>
 							<!-- IF MAIL SENT SUCCESSFUL  // connect this with custom JS -->
-							<h6 class="text-success d-none">Your message has been sent successfully.</h6>
+							<h6 id="progressMobile" class="text-success d-none">Your message has been sent successfully.</h6>
 
 							<!-- IF MAIL NOT SENT -->
 							<h6 class="text-danger d-none">E-mail must be valid and message must be longer than 1 character.</h6>
 
-							<input type="text" class="form-control bg-dark text-white mt-3 mb-3" id="cf-name" name="name" placeholder="Full name">
-							<input type="email" class="form-control bg-dark text-white mb-3" id="cf-email" name="email" placeholder="Email address">
-							<input type="text" class="form-control bg-dark text-white mb-3" id="cf-subject" name="subject" placeholder="Subject">
-							<textarea class="form-control bg-dark text-white mb-3" rows="4" id="cf-message" name="message" placeholder="Tell about your project"></textarea>
-							<button type="submit" class="btn btn-primary btn-lg mt-3" id="cf-submit" name="submit">Send Message</button>
+							<input type="text" class="form-control bg-dark text-white mt-3 mb-3" id="name-mobile" name="name" placeholder="Full name">
+							<input type="email" class="form-control bg-dark text-white mb-3" id="email-mobile" name="email" placeholder="Email address">
+							<input type="text" class="form-control bg-dark text-white mb-3" id="subject-mobile" name="subject" placeholder="Subject">
+							<textarea class="form-control bg-dark text-white mb-3" rows="4" id="message-mobile" name="message" placeholder="Tell about your project"></textarea>
+							<button type="submit" class="btn btn-primary btn-lg mt-3" id="submit-mobile" name="submit">Send Message</button>
 						</form>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<!--Footer section-->
-		<!-- <div class="home-section text-center background-theme-color-1">
+		<div class="home-section text-center background-theme-color-1 p-3">
+			<h1 class="main-topic">Partners</h1>
 			<div class="container-fluid">
 				<div class="row mb-5">
 					<div class="col-4 mb-2">
@@ -901,14 +891,14 @@
 				</div>
 				<hr>
 				<div class="row mt-5 justify-content-center">
-					<div class="col-lg-4">
+					<div class="col-lg-12">
 						<h6 class="text-bold">CODE Consultants (Pvt) Ltd</h6>
 						<h6 class="mb-4 text-secondary">10, Albert Crescent, Colombo 07</h6>
 						<p class="margin-bottom-0 mb-0 text-secondary">Tel: +94 112166320 | Email: code@codec.lk | Web: www.codec.lk</p>
 					</div>
 				</div>
 				<div class="row justify-content-center mt-4">
-					<div class="col-lg-4">
+					<div class="col-lg-12">
 						<ul class="social-icon margin-top-20 p-0 mt-3 mr-0 mb-0 ml-0">
 							<li class="d-inline-block"><a href="#"><i class="fab fa-facebook-square"></i></a></li>
 							<li class="d-inline-block"><a href="#"><i class="fab fa-twitter-square"></i></a></li>
@@ -918,7 +908,7 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 	</div>
 </body>
 
@@ -1321,6 +1311,34 @@
 <script>
 	$(function() {
 		$(".preload").fadeOut(3000, function() {});
+	});
+</script>
+<script type="text/javascript">
+	$('#contactFormMobile').on('submit', function(event) {
+		event.preventDefault();
+
+		name = $('#name-mobile').val();
+		email = $('#email-mobile').val();
+		subject = $('#subject-mobile').val();
+		message = $('#message-mobile').val();
+		$.ajax({
+			url: "/contact",
+			type: "POST",
+			data: {
+				"_token": "{{ csrf_token() }}",
+				name: name,
+				email: email,
+				subject: subject,
+				message: message,
+			},
+			success: function(response) {
+				$('#progressMobile').removeClass("d-none");
+				$('#name-mobile').val('');
+				$('#email-mobile').val('');
+				$('#subject-mobile').val('');
+				$('#message-mobile').val('');
+			},
+		});
 	});
 </script>
 
